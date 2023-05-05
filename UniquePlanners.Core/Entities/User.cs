@@ -12,6 +12,7 @@ namespace UniquePlanners.Core.Entities
         public User()
         {
             UserRoles = new HashSet<UserRoles>();
+            Planners = new HashSet<Planner>();
         }
 
         public string FirstName { get; set; } = null!;
@@ -22,6 +23,7 @@ namespace UniquePlanners.Core.Entities
         public string Username { get; set; } = null!;
         public string PasswordHash { get; set; } = null!;
         public string PasswordSalt { get; set; } = null!;
+        public virtual ICollection<Planner> Planners { get; set; }
         public virtual ICollection<UserRoles> UserRoles { get; set; } = null!;
     }
 }
