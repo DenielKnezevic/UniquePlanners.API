@@ -10,7 +10,7 @@ namespace UniquePlanners.Core.Entities
     public class PlannerCovers : BaseEntity<int>
     {
         public int PlannerId { get; set; }
-        public byte[] Cover { get; set; }
-        public Planner Planner { get; set; }
+        public byte[] Cover { get; set; } = null!;
+        public virtual Planner Planner { get; set; } = null!;
     }
 }

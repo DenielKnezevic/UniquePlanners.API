@@ -14,7 +14,7 @@ namespace UniquePlanners.Core.Entities
             PlannerCovers = new HashSet<PlannerCovers>();
         }
 
-        public string? Name { get; set; }
-        public ICollection<PlannerCovers> PlannerCovers { get; set; }
+        public string Name { get; set; } = null!;
+        public virtual ICollection<PlannerCovers> PlannerCovers { get; set; } = null!;
     }
 }
