@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UniquePlanners.Core\UniquePlanners.Core.csproj" />
+    <ProjectReference Include="..\UniquePlanners.Infrastructure\UniquePlanners.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
