@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddPersistance(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(IUserService));
+builder.Services.AddServices();
 
 var app = builder.Build();
 

@@ -35,7 +35,7 @@ namespace UniquePlanners.Application.Services.Base
         {
             var entity = await _db.Set<TDb>().FindAsync(id);
 
-            _mapper.Map(entity,request);
+            _mapper.Map(request,entity);
 
             await _db.SaveChangesAsync();
 

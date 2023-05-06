@@ -21,7 +21,7 @@ namespace UniquePlanners.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public virtual async Task<ActionResult<T>> Put([FromBody]TUpdateRequest entity, object id)
+        public virtual async Task<ActionResult<T>> Put([FromBody]TUpdateRequest entity, int id)
         {
             return Ok(await ((ICRUDService<T, TSearch, TInsertRequest, TUpdateRequest>)_service).Update(entity, id));
         }

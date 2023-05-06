@@ -15,13 +15,13 @@ namespace UniquePlanners.API.Controllers
         }
 
         [HttpGet]
-        public virtual async Task<ActionResult<IEnumerable<T>>> GetAll(TSearch search)
+        public virtual async Task<ActionResult<IEnumerable<T>>> GetAll([FromQuery]TSearch search)
         {
             return Ok(await _service.GetAll(search));
         }
 
         [HttpGet("{id}")]
-        public virtual async Task<ActionResult<T>> GetById(TSearch search, object id)
+        public virtual async Task<ActionResult<T>> GetById(int id)
         {
             return Ok(await _service.GetById(id));
         }

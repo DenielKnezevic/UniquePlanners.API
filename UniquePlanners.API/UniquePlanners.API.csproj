@@ -26,10 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\UniquePlanners.Application\UniquePlanners.Application.csproj" />
     <ProjectReference Include="..\UniquePlanners.Core\UniquePlanners.Core.csproj" />
     <ProjectReference Include="..\UniquePlanners.Infrastructure\UniquePlanners.Infrastructure.csproj" />
