@@ -15,4 +15,8 @@
     <ProjectReference Include="..\UniquePlanners.Infrastructure\UniquePlanners.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\PlannerService\" />
+  </ItemGroup>
+
 </Project>

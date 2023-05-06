@@ -16,6 +16,7 @@ namespace UniquePlanners.Core.Entities
 
         public int UserId { get; set; }
         public string Name { get; set; } = null!;
+        public double Price { get; set; }
         public virtual User User { get; set; } = null!;
         public virtual ICollection<PlannerCovers> PlannerCovers { get; set; } = null!;
     }

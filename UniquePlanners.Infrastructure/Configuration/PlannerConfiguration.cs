@@ -24,6 +24,7 @@ namespace UniquePlanners.Infrastructure.Configuration
             builder.Property(p => p.UserId).IsRequired();
             builder.Property(p => p.DateCreated).IsRequired();
             builder.Property(p => p.DateModified).IsRequired();
+            builder.Property(p => p.Price).IsRequired();
         }
     }
 }

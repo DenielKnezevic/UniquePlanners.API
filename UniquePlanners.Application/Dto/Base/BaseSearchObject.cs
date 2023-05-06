@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UniquePlanners.Application.Services
+namespace UniquePlanners.Application.Dto.Base
 {
-    public interface IService
+    public class BaseSearchObject
     {
     }
 }

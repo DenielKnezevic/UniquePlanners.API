@@ -8,7 +8,7 @@ using UniquePlanners.Infrastructure.Persistance;
 
 namespace UniquePlanners.Application.Services.Base
 {
-    public class CRUDService<T, TDb, TSearch, TInsertRequest, TUpdateRequest> : BaseService<T, TDb, TSearch>, ICRUDService<T, TSearch, TUpdateRequest, TInsertRequest>
+    public class CRUDService<T, TDb, TSearch, TInsertRequest, TUpdateRequest> : BaseService<T, TDb, TSearch>, ICRUDService<T, TSearch, TInsertRequest, TUpdateRequest>
         where T : class where TDb : class where TSearch : class where TInsertRequest : class where TUpdateRequest : class
     {
         public CRUDService(ApplicationDbContext db, IMapper mapper):base(db, mapper)
@@ -16,7 +16,7 @@ namespace UniquePlanners.Application.Services.Base
 
         }
 
-        public async Task<T> Insert(TInsertRequest request)
+        public virtual async Task<T> Insert(TInsertRequest request)
         {
             var set = _db.Set<TDb>();
 
@@ -31,7 +31,7 @@ namespace UniquePlanners.Application.Services.Base
             return _mapper.Map<T>(entity);
         }
 
-        public async Task<T> Update(TUpdateRequest request, object id)
+        public virtual async Task<T> Update(TUpdateRequest request, object id)
         {
             var entity = await _db.Set<TDb>().FindAsync(id);
 
@@ -42,7 +42,7 @@ namespace UniquePlanners.Application.Services.Base
             return _mapper.Map<T>(entity);
         }
 
-        public async Task<T> Delete(object id)
+        public virtual async Task<T> Delete(object id)
         {
             var entity = await _db.Set<TDb>().FindAsync(id);
 

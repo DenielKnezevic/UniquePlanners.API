@@ -1,4 +1,5 @@
 using UniquePlanners.Application.Services;
+using UniquePlanners.Application.Services.UserService;
 using UniquePlanners.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddPersistance(builder.Configuration);
-builder.Services.AddAutoMapper(typeof(IService));
+builder.Services.AddAutoMapper(typeof(IUserService));
 
 var app = builder.Build();
 
