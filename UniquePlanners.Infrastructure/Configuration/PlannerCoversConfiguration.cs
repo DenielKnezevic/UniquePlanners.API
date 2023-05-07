@@ -19,8 +19,9 @@ namespace UniquePlanners.Infrastructure.Configuration
 
             builder.Property(pc => pc.Cover).IsRequired();
             builder.Property(pc => pc.PlannerId).IsRequired();
-            builder.Property(pc => pc.DateCreated).IsRequired();
-            builder.Property(pc => pc.DateModified).IsRequired();
+            builder.Property(pc => pc.DateCreated).IsRequired().HasDefaultValue(DateTime.Now);
+            builder.Property(pc => pc.DateModified).IsRequired().HasDefaultValue(DateTime.Now);
+            builder.Property(pc => pc.IsDeleted).IsRequired().HasDefaultValue(false);
 
             builder.HasOne(pc => pc.Planner).WithMany(p => p.PlannerCovers).HasForeignKey(pc => pc.PlannerId).IsRequired();
         }

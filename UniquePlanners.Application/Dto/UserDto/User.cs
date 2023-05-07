@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UniquePlanners.Application.Dto.Base;
+using UniquePlanners.Application.Dto.PlannerDto;
 using UniquePlanners.Application.Services.PlannerService;
 
 namespace UniquePlanners.Application.Services.UserService.Dto

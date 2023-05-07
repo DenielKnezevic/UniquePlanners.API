@@ -20,6 +20,11 @@ namespace UniquePlanners.Application.Services.UserService
 
         }
 
+        public override async Task BeforeUpdate(Core.Entities.User entity)
+        {
+            entity.DateModified = DateTime.Now;
+        }
+
         public override async Task BeforeInsert(UserInsertRequest insert, Core.Entities.User entity)
         {
             var salt = GenerateSalt();

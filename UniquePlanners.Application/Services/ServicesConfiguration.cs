@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniquePlanners.Application.Services.PlannerCoversService;
+using UniquePlanners.Application.Services.PlannerService;
 using UniquePlanners.Application.Services.UserService;
 
 namespace UniquePlanners.Application.Services
@@ -14,6 +16,8 @@ namespace UniquePlanners.Application.Services
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddTransient<IUserService, UserService.UserService>();
+            services.AddTransient<IPlannerService, PlannerService.PlannerService>();
+            services.AddTransient<IPlannerCoversService,  PlannerCoversService.PlannerCoversService>();
 
             return services;
         }

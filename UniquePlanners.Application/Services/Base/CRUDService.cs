@@ -37,6 +37,9 @@ namespace UniquePlanners.Application.Services.Base
 
             _mapper.Map(request,entity);
 
+            if (entity != null)
+                await BeforeUpdate(entity);
+
             await _db.SaveChangesAsync();
 
             return _mapper.Map<T>(entity);
@@ -57,6 +60,11 @@ namespace UniquePlanners.Application.Services.Base
         }
 
         public virtual async Task BeforeInsert(TInsertRequest insert, TDb entity)
+        {
+
+        }
+
+        public virtual async Task BeforeUpdate(TDb entity)
         {
 
         }
