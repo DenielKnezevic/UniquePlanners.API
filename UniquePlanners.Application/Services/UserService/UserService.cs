@@ -1,13 +1,18 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using UniquePlanners.Application.Dto.UserDto;
 using UniquePlanners.Application.Services.Base;
+using UniquePlanners.Application.Services.TokenService;
 using UniquePlanners.Application.Services.UserService.Dto;
 using UniquePlanners.Infrastructure.Persistance;
 
@@ -15,9 +20,12 @@ namespace UniquePlanners.Application.Services.UserService
 {
     public class UserService : CRUDService<User, Core.Entities.User,UserSearchObject,UserInsertRequest,UserUpdateRequest>, IUserService
     {
-        public UserService(ApplicationDbContext db, IMapper mapper):base(db,mapper)
+        private readonly IConfiguration _configuration;
+        private readonly ITokenService _tokenService;
+        public UserService(ApplicationDbContext db, IMapper mapper, IConfiguration configuration, ITokenService service):base(db,mapper)
         {
-
+            _configuration = configuration;
+            _tokenService = service;
         }
 
         public override async Task BeforeUpdate(Core.Entities.User entity)
@@ -66,6 +74,40 @@ namespace UniquePlanners.Application.Services.UserService
             }
 
             return entity;
+        }
+
+        public async Task<string> Login(LoginDto loginDetails)
+        {
+            var user = _db.Users.Include(x => x.UserRoles).ThenInclude(x => x.Role).FirstOrDefault(x => x.Username == loginDetails.Username);
+
+            if (user == null || await VerifyPassowrd(loginDetails.Password, user) == false)
+                throw new Exception("Username or password is incorrect");
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim("Id", user.Id.ToString())
+            };
+
+            claims.AddRange(user.UserRoles.Select(ur => new Claim(ClaimTypes.Role, ur.Role.RoleName)));
+
+            var token = await _tokenService.BuildToken(claims, credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+
+        }
+
+        public static async Task<bool> VerifyPassowrd(string password, Core.Entities.User user)
+        {
+            var hash = GenerateHash(user.PasswordSalt, password);
+            if (hash == user.PasswordHash)
+                return true;
+            else
+                return false;
         }
 
         public static string GenerateSalt()
