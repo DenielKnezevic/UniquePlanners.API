@@ -8,7 +8,9 @@ namespace UniquePlanners.API.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class BaseController<T,TSearch> : ControllerBase where T : class where TSearch : class 
+    public class BaseController<T,TSearch> : ControllerBase 
+        where T : class 
+        where TSearch : class 
     {
         public readonly IBaseService<T,TSearch> _service;
         public BaseController(IBaseService<T, TSearch> service)

@@ -9,7 +9,11 @@ using UniquePlanners.Infrastructure.Persistance;
 namespace UniquePlanners.Application.Services.Base
 {
     public class CRUDService<T, TDb, TSearch, TInsertRequest, TUpdateRequest> : BaseService<T, TDb, TSearch>, ICRUDService<T, TSearch, TInsertRequest, TUpdateRequest>
-        where T : class where TDb : class where TSearch : class where TInsertRequest : class where TUpdateRequest : class
+        where T : class 
+        where TDb : class 
+        where TSearch : class 
+        where TInsertRequest : class 
+        where TUpdateRequest : class
     {
         public CRUDService(ApplicationDbContext db, IMapper mapper):base(db, mapper)
         {

@@ -8,7 +8,10 @@ using UniquePlanners.Infrastructure.Persistance;
 
 namespace UniquePlanners.Application.Services.Base
 {
-    public class BaseService<T, TDb, TSearch> : IBaseService<T, TSearch> where T : class where TDb : class where TSearch : class
+    public class BaseService<T, TDb, TSearch> : IBaseService<T, TSearch> 
+        where T : class 
+        where TDb : class 
+        where TSearch : class
     {
         public readonly ApplicationDbContext _db;
         public readonly IMapper _mapper;
