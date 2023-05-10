@@ -4,14 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniquePlanners.Application.Dto.Base;
+using UniquePlanners.Core.Entities.Base;
 using UniquePlanners.Infrastructure.Persistance;
 
 namespace UniquePlanners.Application.Services.Base
 {
     public class CRUDService<T, TDb, TSearch, TInsertRequest, TUpdateRequest> : BaseService<T, TDb, TSearch>, ICRUDService<T, TSearch, TInsertRequest, TUpdateRequest>
         where T : class 
-        where TDb : class 
-        where TSearch : class 
+        where TDb : BaseEntity<int> 
+        where TSearch : BaseSearchObject
         where TInsertRequest : class 
         where TUpdateRequest : class
     {
@@ -65,12 +67,13 @@ namespace UniquePlanners.Application.Services.Base
 
         public virtual async Task BeforeInsert(TInsertRequest insert, TDb entity)
         {
-
+            entity.DateCreated = DateTime.Now;
+            entity.DateModified = DateTime.Now;
         }
 
         public virtual async Task BeforeUpdate(TDb entity)
         {
-
+            entity.DateModified = DateTime.Now;
         }
     }
 }

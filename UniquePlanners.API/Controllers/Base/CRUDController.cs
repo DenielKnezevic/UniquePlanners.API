@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UniquePlanners.Application.Dto.Base;
 using UniquePlanners.Application.Services.Base;
 
 namespace UniquePlanners.API.Controllers
@@ -9,7 +10,7 @@ namespace UniquePlanners.API.Controllers
     [ApiController]
     public class CRUDController<T,TSearch,TInsertRequest,TUpdateRequest,TValidatorInsert,TValidatorUpdate> : BaseController<T,TSearch>
         where T : class
-        where TSearch : class 
+        where TSearch : BaseSearchObject
         where TInsertRequest : class 
         where TUpdateRequest : class 
         where TValidatorInsert : AbstractValidator<TInsertRequest>, new()

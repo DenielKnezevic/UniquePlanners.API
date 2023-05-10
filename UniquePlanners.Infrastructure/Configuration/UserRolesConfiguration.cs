@@ -17,8 +17,8 @@ namespace UniquePlanners.Infrastructure.Configuration
 
             builder.HasKey(x => x.Id);
 
-            builder.Property(ur => ur.DateCreated).IsRequired().HasDefaultValue(DateTime.Now);
-            builder.Property(ur => ur.DateModified).IsRequired().HasDefaultValue(DateTime.Now);
+            builder.Property(ur => ur.DateCreated).IsRequired();
+            builder.Property(ur => ur.DateModified).IsRequired();
             builder.Property(ur => ur.IsDeleted).IsRequired().HasDefaultValue(false);
             builder.Property(ur => ur.RoleId).IsRequired();
             builder.Property(ur => ur.UserId).IsRequired();

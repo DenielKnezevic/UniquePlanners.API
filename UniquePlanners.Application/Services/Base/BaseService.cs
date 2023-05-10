@@ -4,14 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniquePlanners.Application.Dto.Base;
+using UniquePlanners.Core.Entities.Base;
 using UniquePlanners.Infrastructure.Persistance;
 
 namespace UniquePlanners.Application.Services.Base
 {
     public class BaseService<T, TDb, TSearch> : IBaseService<T, TSearch> 
         where T : class 
-        where TDb : class 
-        where TSearch : class
+        where TDb : BaseEntity<int> 
+        where TSearch : BaseSearchObject
     {
         public readonly ApplicationDbContext _db;
         public readonly IMapper _mapper;
@@ -44,12 +46,17 @@ namespace UniquePlanners.Application.Services.Base
         }
 
         public virtual IQueryable<TDb> AddInclude(IQueryable<TDb> entity, TSearch search)
-        {
+        { 
             return entity;
         }
 
         public virtual IQueryable<TDb> AddFilter(IQueryable<TDb> entity, TSearch search)
         {
+            if (search.IsDeleted.HasValue)
+            {
+                entity = entity.Where(x => x.IsDeleted == search.IsDeleted);
+            }
+
             return entity;
         }
     }

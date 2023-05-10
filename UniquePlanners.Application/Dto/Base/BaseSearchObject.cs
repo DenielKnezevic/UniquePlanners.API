@@ -8,5 +8,6 @@ namespace UniquePlanners.Application.Dto.Base
 {
     public class BaseSearchObject
     {
+        public bool? IsDeleted { get; set; }
     }
 }

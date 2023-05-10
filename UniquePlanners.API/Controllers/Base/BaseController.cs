@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UniquePlanners.Application.Dto.Base;
 using UniquePlanners.Application.Services.Base;
 
 namespace UniquePlanners.API.Controllers
@@ -10,7 +11,7 @@ namespace UniquePlanners.API.Controllers
     [ApiController]
     public class BaseController<T,TSearch> : ControllerBase 
         where T : class 
-        where TSearch : class 
+        where TSearch : BaseSearchObject
     {
         public readonly IBaseService<T,TSearch> _service;
         public BaseController(IBaseService<T, TSearch> service)

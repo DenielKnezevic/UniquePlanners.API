@@ -10,5 +10,6 @@ namespace UniquePlanners.Application.Dto.PlannerCoversDto
     {
         public int PlannerId { get; set; }
         public byte[]? Cover { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 }

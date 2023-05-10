@@ -19,8 +19,8 @@ namespace UniquePlanners.Infrastructure.Configuration
 
             builder.Property(u => u.FirstName).IsRequired();
             builder.Property(u => u.LastName).IsRequired();
-            builder.Property(u => u.DateCreated).IsRequired().HasDefaultValue(DateTime.Now);
-            builder.Property(u => u.DateModified).IsRequired().HasDefaultValue(DateTime.Now);
+            builder.Property(u => u.DateCreated).IsRequired();
+            builder.Property(u => u.DateModified).IsRequired();
             builder.Property(u => u.IsDeleted).IsRequired().HasDefaultValue(false);
             builder.Property(u => u.PasswordHash).IsRequired();
             builder.Property(u => u.PasswordSalt).IsRequired();

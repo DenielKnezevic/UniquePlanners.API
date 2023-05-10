@@ -35,6 +35,8 @@ namespace UniquePlanners.Application.Services.PlannerService
 
         public override IQueryable<Core.Entities.Planner> AddFilter(IQueryable<Core.Entities.Planner> entity, PlannerSearchObject search)
         {
+            entity = base.AddFilter(entity, search);
+
             if(string.IsNullOrWhiteSpace(search.Name) == false)
             {
                 entity = entity.Where(x => x.Name.ToLower().StartsWith(search.Name.ToLower()));
