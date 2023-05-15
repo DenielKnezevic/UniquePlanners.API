@@ -25,8 +25,8 @@ docker-compose down
 2. Configure Swagger UI:
 - Locate the authentication section in the Swagger UI.
 - Click on the "Authorize" button
-- In the "Value" field, enter Bearer <JWT Token>, replacing <JWT Token> with the actual JWT token obtained in Step 1.
+- In the "Value" field, enter Bearer JWT Token, replacing JWT Token with the actual JWT token obtained in Step 1.
   Click on the "Authorize" button to save the changes.
 3. Test API Endpoints:
-- Now, all API requests made through Swagger UI will include the JWT token in the Authorization header with the value Bearer <JWT Token>.
+- Now, all API requests made through Swagger UI will include the JWT token in the Authorization header with the value Bearer JWT Token.
 - You can test the API endpoints by providing the required input and executing the requests.
