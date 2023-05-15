@@ -39,14 +39,19 @@ namespace UniquePlanners.Application.Services.UserService
             return entity;
         }
 
-        public override Task<User> Update(UserUpdateRequest request, object id)
+        public async override Task<User> Update(UserUpdateRequest request, object id)
         {
-            if (request.Password != request.PasswordConfirmation)
+            var user = await _db.Users.FindAsync(id);
+
+            if (user == null)
+                throw new Exception("User not found");
+
+            if (PasswordHelper.GenerateHash(user.PasswordSalt,request.Password) != user.PasswordHash)
                 throw new Exception("Password does not match!");
 
             var entity = base.Update(request, id);
 
-            return entity;
+            return await entity;
         }
 
         public override async Task BeforeInsert(UserInsertRequest insert, Core.Entities.User entity)
