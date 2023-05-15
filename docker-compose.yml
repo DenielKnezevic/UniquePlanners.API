@@ -1,0 +1,32 @@
+version: "3"
+services:
+    uniqueplanners-sql:
+        image: "mcr.microsoft.com/mssql/server:2017-latest"
+        restart: unless-stopped
+        environment:
+            SA_PASSWORD: "QWElkj132!"
+            ACCEPT_EULA: "Y"
+            MSSQL_PID: "Developer"
+        ports:
+            - 1401:1433
+        networks:
+            - uniqueplannersnet
+
+    uniqueplanners-api:
+        restart: unless-stopped
+        build: .
+        environment:
+            - ConnectionStrings:DefaultConnection=Server=uniqueplanners-sql,1433;Database=uniqueplanners;User=sa;Password=QWElkj132!;
+            - ASPNETCORE_ENVIRONMENT=Development
+        ports:
+            - 5192:5192
+        networks:
+            - uniqueplannersnet
+        depends_on:
+            - uniqueplanners-sql
+        links:
+            - uniqueplanners-sql 
+
+networks:
+  uniqueplannersnet:
+    driver: bridge

@@ -27,6 +27,15 @@ namespace UniquePlanners.Infrastructure.Configuration
 
             builder.HasMany(u => u.UserRoles).WithOne(ur => ur.User).HasForeignKey(ur => ur.UserId).IsRequired();
             builder.HasMany(u => u.Planners).WithOne(p => p.User).HasForeignKey(p => p.UserId).IsRequired();
+
+            SeedData(builder);
+        }
+
+        private void SeedData(EntityTypeBuilder<User> builder)
+        {
+            var userAdmin = new User { Id = 1, IsDeleted = false, DateCreated = DateTime.Now, DateModified = DateTime.Now, DayOfBirth = DateTime.Now, Email = "admin@planners.com", FirstName = "Admin" , LastName = "Admin", PasswordSalt = "EXbj3Fr+QN6AbRkoJFX/QA==", PasswordHash = "rvvcYpaiMwQyQqY4J3rLNRBerJw=", PhoneNumber = "+387000000", Username = "User" };
+
+            builder.HasData(userAdmin);
         }
     }
 }

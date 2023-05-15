@@ -25,6 +25,15 @@ namespace UniquePlanners.Infrastructure.Configuration
 
             builder.HasOne(ur => ur.User).WithMany(u => u.UserRoles).HasForeignKey(ur => ur.UserId).IsRequired();
             builder.HasOne(ur => ur.Role).WithMany(r => r.UserRoles).HasForeignKey(ur => ur.RoleId).IsRequired();
+
+            SeedData(builder);
+        }
+
+        private void SeedData(EntityTypeBuilder<UserRoles> builder)
+        {
+            var userRole = new UserRoles { Id = 1 , DateCreated = DateTime.Now, DateModified = DateTime.Now, IsDeleted = false , RoleId = 1 , UserId = 1 };
+
+            builder.HasData(userRole);
         }
     }
 }

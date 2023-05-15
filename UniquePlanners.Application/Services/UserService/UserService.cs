@@ -29,14 +29,30 @@ namespace UniquePlanners.Application.Services.UserService
             _tokenService = service;
         }
 
-        public override async Task BeforeUpdate(Core.Entities.User entity)
+        public override Task<User> Insert(UserInsertRequest request)
         {
-            await base.BeforeUpdate(entity);
+            if (request.Password != request.PasswordConfirmation)
+                throw new Exception("Password does not match!");
+
+            var entity = base.Insert(request);
+
+            return entity;
+        }
+
+        public override Task<User> Update(UserUpdateRequest request, object id)
+        {
+            if (request.Password != request.PasswordConfirmation)
+                throw new Exception("Password does not match!");
+
+            var entity = base.Update(request, id);
+
+            return entity;
         }
 
         public override async Task BeforeInsert(UserInsertRequest insert, Core.Entities.User entity)
-        {
+        { 
             await base.BeforeInsert(insert, entity);
+
             var salt = PasswordHelper.GenerateSalt();
             var hash = PasswordHelper.GenerateHash(salt, insert.Password);
             entity.PasswordSalt = salt;

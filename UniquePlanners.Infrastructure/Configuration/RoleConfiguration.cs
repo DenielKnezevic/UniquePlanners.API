@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UniquePlanners.Core.Entities;
+using UniquePlanners.Core.Helpers;
 
 namespace UniquePlanners.Infrastructure.Configuration
 {
@@ -23,6 +24,15 @@ namespace UniquePlanners.Infrastructure.Configuration
             builder.Property(ur => ur.IsDeleted).IsRequired().HasDefaultValue(false);
 
             builder.HasMany(r => r.UserRoles).WithOne(ur => ur.Role).HasForeignKey(ur => ur.RoleId).IsRequired();
+
+            SeedData(builder);
+        }
+
+        private void SeedData(EntityTypeBuilder<Roles> builder)
+        {
+            var adminRole = new Roles { Id = 1, DateCreated = DateTime.Now, DateModified = DateTime.Now, IsDeleted = false, RoleName = RoleNames.ADMIN, Description = "" };
+
+            builder.HasData(adminRole);
         }
     }
 }

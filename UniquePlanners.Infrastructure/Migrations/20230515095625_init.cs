@@ -17,8 +17,8 @@ namespace UniquePlanners.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(4901)),
-                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(5116)),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
@@ -40,8 +40,8 @@ namespace UniquePlanners.Infrastructure.Migrations
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PasswordSalt = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(7133)),
-                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(7414)),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
@@ -58,8 +58,8 @@ namespace UniquePlanners.Infrastructure.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(1718)),
-                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(2128)),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
@@ -81,8 +81,8 @@ namespace UniquePlanners.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     RoleId = table.Column<int>(type: "int", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(9878)),
-                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 5, 7, 18, 10, 49, 513, DateTimeKind.Local).AddTicks(128)),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
@@ -110,8 +110,8 @@ namespace UniquePlanners.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlannerId = table.Column<int>(type: "int", nullable: false),
                     Cover = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(3220)),
-                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(3452)),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
@@ -124,6 +124,21 @@ namespace UniquePlanners.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "Id", "DateCreated", "DateModified", "Description", "RoleName" },
+                values: new object[] { 1, new DateTime(2023, 5, 15, 11, 56, 24, 862, DateTimeKind.Local).AddTicks(9722), new DateTime(2023, 5, 15, 11, 56, 24, 862, DateTimeKind.Local).AddTicks(9762), "", "Admin" });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "Id", "DateCreated", "DateModified", "DayOfBirth", "Email", "FirstName", "LastName", "PasswordHash", "PasswordSalt", "PhoneNumber", "Username" },
+                values: new object[] { 1, new DateTime(2023, 5, 15, 11, 56, 24, 863, DateTimeKind.Local).AddTicks(4674), new DateTime(2023, 5, 15, 11, 56, 24, 863, DateTimeKind.Local).AddTicks(4692), new DateTime(2023, 5, 15, 11, 56, 24, 863, DateTimeKind.Local).AddTicks(4694), "admin@planners.com", "Admin", "Admin", "rvvcYpaiMwQyQqY4J3rLNRBerJw=", "EXbj3Fr+QN6AbRkoJFX/QA==", "+387000000", "User" });
+
+            migrationBuilder.InsertData(
+                table: "UserRoles",
+                columns: new[] { "Id", "DateCreated", "DateModified", "RoleId", "UserId" },
+                values: new object[] { 1, new DateTime(2023, 5, 15, 11, 56, 24, 863, DateTimeKind.Local).AddTicks(6925), new DateTime(2023, 5, 15, 11, 56, 24, 863, DateTimeKind.Local).AddTicks(6939), 1, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Planner_UserId",

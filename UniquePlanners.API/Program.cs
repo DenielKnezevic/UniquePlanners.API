@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -6,6 +7,7 @@ using UniquePlanners.API.Infrastructure;
 using UniquePlanners.Application.Services;
 using UniquePlanners.Application.Services.UserService;
 using UniquePlanners.Infrastructure;
+using UniquePlanners.Infrastructure.Persistance;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +30,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API");
+    });
 }
 
 app.UseHttpsRedirection();
@@ -37,5 +42,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider
+        .GetRequiredService<ApplicationDbContext>();
+
+    dbContext.Database.Migrate();
+}
 
 app.Run();

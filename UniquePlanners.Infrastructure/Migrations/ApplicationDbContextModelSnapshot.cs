@@ -31,14 +31,10 @@ namespace UniquePlanners.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("DateCreated")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(1718));
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateModified")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(2128));
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -75,14 +71,10 @@ namespace UniquePlanners.Infrastructure.Migrations
                         .HasColumnType("varbinary(max)");
 
                     b.Property<DateTime>("DateCreated")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(3220));
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateModified")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(3452));
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -108,14 +100,10 @@ namespace UniquePlanners.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("DateCreated")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(4901));
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateModified")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(5116));
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -132,6 +120,17 @@ namespace UniquePlanners.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateCreated = new DateTime(2023, 5, 15, 11, 56, 24, 862, DateTimeKind.Local).AddTicks(9722),
+                            DateModified = new DateTime(2023, 5, 15, 11, 56, 24, 862, DateTimeKind.Local).AddTicks(9762),
+                            Description = "",
+                            IsDeleted = false,
+                            RoleName = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("UniquePlanners.Core.Entities.User", b =>
@@ -143,14 +142,10 @@ namespace UniquePlanners.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("DateCreated")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(7133));
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateModified")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(7414));
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DayOfBirth")
                         .HasColumnType("datetime2");
@@ -189,6 +184,23 @@ namespace UniquePlanners.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateCreated = new DateTime(2023, 5, 15, 11, 56, 24, 863, DateTimeKind.Local).AddTicks(4674),
+                            DateModified = new DateTime(2023, 5, 15, 11, 56, 24, 863, DateTimeKind.Local).AddTicks(4692),
+                            DayOfBirth = new DateTime(2023, 5, 15, 11, 56, 24, 863, DateTimeKind.Local).AddTicks(4694),
+                            Email = "admin@planners.com",
+                            FirstName = "Admin",
+                            IsDeleted = false,
+                            LastName = "Admin",
+                            PasswordHash = "rvvcYpaiMwQyQqY4J3rLNRBerJw=",
+                            PasswordSalt = "EXbj3Fr+QN6AbRkoJFX/QA==",
+                            PhoneNumber = "+387000000",
+                            Username = "User"
+                        });
                 });
 
             modelBuilder.Entity("UniquePlanners.Core.Entities.UserRoles", b =>
@@ -200,14 +212,10 @@ namespace UniquePlanners.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("DateCreated")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 5, 7, 18, 10, 49, 512, DateTimeKind.Local).AddTicks(9878));
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateModified")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 5, 7, 18, 10, 49, 513, DateTimeKind.Local).AddTicks(128));
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -227,6 +235,17 @@ namespace UniquePlanners.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateCreated = new DateTime(2023, 5, 15, 11, 56, 24, 863, DateTimeKind.Local).AddTicks(6925),
+                            DateModified = new DateTime(2023, 5, 15, 11, 56, 24, 863, DateTimeKind.Local).AddTicks(6939),
+                            IsDeleted = false,
+                            RoleId = 1,
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("UniquePlanners.Core.Entities.Planner", b =>

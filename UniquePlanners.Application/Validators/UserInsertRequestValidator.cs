@@ -16,7 +16,8 @@ namespace UniquePlanners.Application.Validators
             RuleFor(x => x.LastName).NotEmpty().MinimumLength(2).WithMessage("Last name's minimum length is 2");
             RuleFor(x => x.Username).NotEmpty().MinimumLength(4).WithMessage("Username's minimum length is 4");
             RuleFor(x => x.Email).NotEmpty().EmailAddress().WithMessage("Email is a required property");
-            RuleFor(x => x.Password).NotEmpty().MinimumLength(6).WithMessage("Password's minimum length is 2");
+            RuleFor(x => x.Password).NotEmpty().MinimumLength(6).WithMessage("Password's minimum length is 6");
+            RuleFor(x => x.PasswordConfirmation).NotEmpty().MinimumLength(6).WithMessage("Password's minimum length is 6");
             RuleFor(x => x.DayOfBirth).NotNull().Must(x => x < DateTime.Now).WithMessage("Day of birth must be lower than the current date");
             RuleFor(x => x.PhoneNumber).NotEmpty().Matches(@"^\+\d+$").WithMessage("Phone number must start with a + (ie. +300000000");
         }
