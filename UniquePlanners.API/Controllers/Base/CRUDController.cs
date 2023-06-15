@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UniquePlanners.Application.Dto.Base;
@@ -21,6 +22,7 @@ namespace UniquePlanners.API.Controllers
 
         }
 
+        [Authorize]
         [HttpPost]
         public virtual async Task<ActionResult<T>> Post([FromBody]TInsertRequest entity)
         {
@@ -30,6 +32,7 @@ namespace UniquePlanners.API.Controllers
             return Ok(await ((ICRUDService<T, TSearch, TInsertRequest, TUpdateRequest>)_service).Insert(entity));
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public virtual async Task<ActionResult<T>> Put([FromBody]TUpdateRequest entity, int id)
         {

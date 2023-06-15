@@ -36,6 +36,14 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseCors(
+         options => options
+         .SetIsOriginAllowed(x => _ = true)
+         .AllowAnyMethod()
+         .AllowAnyHeader()
+         .AllowCredentials()
+     );
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

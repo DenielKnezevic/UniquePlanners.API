@@ -6,7 +6,6 @@ using UniquePlanners.Application.Services.Base;
 
 namespace UniquePlanners.API.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BaseController<T,TSearch> : ControllerBase 
