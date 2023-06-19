@@ -101,7 +101,7 @@ namespace UniquePlanners.Application.Services.UserService
             return entity;
         }
 
-        public async Task<string> Login(LoginDto loginDetails)
+        public async Task<AuthenticatedResponse> Login(LoginDto loginDetails)
         {
             var user = _db.Users.Include(x => x.UserRoles).ThenInclude(x => x.Role).FirstOrDefault(x => x.Username == loginDetails.Username);
 
@@ -122,7 +122,9 @@ namespace UniquePlanners.Application.Services.UserService
 
             var token = await _tokenService.BuildToken(claims, credentials);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return new AuthenticatedResponse { Token = tokenString };
 
         }
 

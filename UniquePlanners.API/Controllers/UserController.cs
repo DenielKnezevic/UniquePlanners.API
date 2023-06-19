@@ -17,7 +17,7 @@ namespace UniquePlanners.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login([FromBody]LoginDto loginDetails)
+        public async Task<ActionResult<AuthenticatedResponse>> Login([FromBody]LoginDto loginDetails)
         {
             var validator = new LoginDtoValidator().Validate(loginDetails);
             if (!validator.IsValid)

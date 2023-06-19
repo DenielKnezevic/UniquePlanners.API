@@ -11,6 +11,6 @@ namespace UniquePlanners.Application.Services.UserService
 {
     public interface IUserService : ICRUDService<User,UserSearchObject,UserInsertRequest,UserUpdateRequest>
     {
-        Task<string> Login(LoginDto loginDetails);
+        Task<AuthenticatedResponse> Login(LoginDto loginDetails);
     }
 }
