@@ -14,6 +14,7 @@ namespace UniquePlanners.Application.Dto.PlannerDto
         public int UserId { get; set; }
         public string? Name { get; set; } 
         public double? Price { get; set; }
+        public string? Description { get; set; }
         public virtual User? User { get; set; } 
         public virtual ICollection<PlannerCovers>? PlannerCovers { get; set; } 
     }

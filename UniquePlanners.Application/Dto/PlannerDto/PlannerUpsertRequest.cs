@@ -11,6 +11,7 @@ namespace UniquePlanners.Application.Dto.PlannerDto
         public int UserId { get; set; }
         public string? Name { get; set; }
         public double? Price { get; set; }
+        public string? Description { get; set; }
         public bool? IsDeleted { get; set; }
     }
 }

@@ -21,6 +21,7 @@ namespace UniquePlanners.Infrastructure.Configuration
             builder.HasOne(p => p.User).WithMany(u => u.Planners).HasForeignKey(p => p.UserId).IsRequired();
 
             builder.Property(p => p.Name).IsRequired();
+            builder.Property(p => p.Description).IsRequired();
             builder.Property(p => p.UserId).IsRequired();
             builder.Property(p => p.DateCreated).IsRequired();
             builder.Property(p => p.DateModified).IsRequired();

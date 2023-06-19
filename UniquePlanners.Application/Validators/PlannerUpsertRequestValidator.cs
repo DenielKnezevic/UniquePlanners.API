@@ -15,6 +15,7 @@ namespace UniquePlanners.Application.Validators
             RuleFor(x => x.UserId).NotEmpty().GreaterThanOrEqualTo(1).WithMessage("UserId must be greater than 0");
             RuleFor(x => x.Name).NotEmpty().WithMessage("Name is a required property");
             RuleFor(x => x.Price).NotNull().GreaterThan(0).WithMessage("Price must be greater than 0");
+            RuleFor(x => x.Description).NotNull().MinimumLength(10).WithMessage("Description must be at least 10 characters long");
         }
     }
 }
