@@ -24,6 +24,8 @@ namespace UniquePlanners.Application.Mapper
             CreateMap<PlannerCovers, Core.Entities.PlannerCovers>().ReverseMap();
             CreateMap<PlannerCoversUpsertRequest, Core.Entities.PlannerCovers>().ReverseMap();
             CreateMap<PlannerCoversUpsertRequest, Core.Entities.PlannerCovers>().ReverseMap();
+            CreateMap<UserRoles,Core.Entities.UserRoles>().ReverseMap();
+            CreateMap<Roles, Core.Entities.Roles>().ReverseMap();
         }
     }
 }
