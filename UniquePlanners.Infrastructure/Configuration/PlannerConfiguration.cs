@@ -27,6 +27,20 @@ namespace UniquePlanners.Infrastructure.Configuration
             builder.Property(p => p.DateModified).IsRequired();
             builder.Property(p => p.IsDeleted).IsRequired().HasDefaultValue(false);
             builder.Property(p => p.Price).IsRequired();
+
+            seedData(builder);
+
+        }
+
+        private void seedData(EntityTypeBuilder<Planner> builder)
+        {
+            List<Planner> planner = new List<Planner>
+            {
+                new Planner { Id = 1, DateCreated = DateTime.Now, DateModified = DateTime.Now, IsDeleted = false, Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", Name = "Dnevni planer", Price = 20, UserId = 1 },
+                new Planner { Id = 2, DateCreated = DateTime.Now, DateModified = DateTime.Now, IsDeleted = false, Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", Name = "Poslovni planer", Price = 20, UserId = 1 }
+            };
+
+            builder.HasData(planner);
         }
     }
 }
