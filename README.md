@@ -27,6 +27,12 @@ docker-compose down
 
 ## Swagger login
 ### Steps
+- Credentials
+  
+  ```
+  Username: User
+  Password: User123
+  ```
 1. Obtain JWT Token:
 - Send a post request to the insert endpoint to create a new user.
 - Send a POST request to the login endpoint with your credentials (username and password). 
