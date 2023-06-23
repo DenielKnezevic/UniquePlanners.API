@@ -11,6 +11,7 @@ namespace UniquePlanners.Application.Dto.PlannerCoversDto
     public class PlannerCovers : BaseDto<int>
     {
         public int PlannerId { get; set; }
+        public string Name { get; set; }
         public byte[]? Cover { get; set; }
         public virtual Planner? Planner { get; set; }
     }

@@ -30,7 +30,7 @@ namespace UniquePlanners.Infrastructure.Configuration
 
         private void SeedData(EntityTypeBuilder<Roles> builder)
         {
-            var adminRole = new Roles { Id = 1, DateCreated = DateTime.Now, DateModified = DateTime.Now, IsDeleted = false, RoleName = RoleNames.ADMIN, Description = "" };
+            var adminRole = new Roles { Id = 1, DateCreated = DateTime.UtcNow, DateModified = DateTime.UtcNow, IsDeleted = false, RoleName = RoleNames.ADMIN, Description = "" };
 
             builder.HasData(adminRole);
         }

@@ -9,6 +9,7 @@ namespace UniquePlanners.Application.Dto.PlannerCoversDto
     public class PlannerCoversUpsertRequest
     {
         public int PlannerId { get; set; }
+        public string Name { get; set; }
         public byte[]? Cover { get; set; }
         public bool? IsDeleted { get; set; }
     }

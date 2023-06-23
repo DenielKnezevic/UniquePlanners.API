@@ -27,5 +27,15 @@ namespace UniquePlanners.Application.Services.PlannerCoversService
 
             return entity;
         }
+
+        public override IQueryable<Core.Entities.PlannerCovers> AddFilter(IQueryable<Core.Entities.PlannerCovers> entity, PlannerCoversSearchObject search)
+        {
+            if(!string.IsNullOrEmpty(search.Name))
+            {
+                entity = entity.Where(x => x.Name.ToLower().Contains(search.Name.ToLower()));
+            }
+
+            return entity;
+        }
     }
 }

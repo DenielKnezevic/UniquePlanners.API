@@ -67,13 +67,13 @@ namespace UniquePlanners.Application.Services.Base
 
         public virtual async Task BeforeInsert(TInsertRequest insert, TDb entity)
         {
-            entity.DateCreated = DateTime.Now;
-            entity.DateModified = DateTime.Now;
+            entity.DateCreated = DateTime.UtcNow;
+            entity.DateModified = DateTime.UtcNow;
         }
 
         public virtual async Task BeforeUpdate(TDb entity)
         {
-            entity.DateModified = DateTime.Now;
+            entity.DateModified = DateTime.UtcNow;
         }
     }
 }

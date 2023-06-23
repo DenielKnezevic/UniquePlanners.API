@@ -10,5 +10,6 @@ namespace UniquePlanners.Application.Dto.PlannerCoversDto
     public class PlannerCoversSearchObject : BaseSearchObject
     {
         public bool? IncludePlanner { get; set; }
+        public string? Name { get; set; }
     }
 }
