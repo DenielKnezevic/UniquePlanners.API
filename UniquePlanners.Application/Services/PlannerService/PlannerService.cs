@@ -22,7 +22,7 @@ namespace UniquePlanners.Application.Services.PlannerService
         {
             if(search.IncludePlannerCovers.HasValue && search.IncludePlannerCovers == true)
             {
-                entity = entity.Include(x => x.PlannerCovers);
+                entity = entity.Include(x => x.PlannerCovers.Where(x => x.IsDeleted == false));
             }
 
             if(search.IncludeUser.HasValue && search.IncludeUser == true)
