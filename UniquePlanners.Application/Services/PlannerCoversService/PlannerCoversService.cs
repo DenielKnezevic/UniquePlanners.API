@@ -30,6 +30,8 @@ namespace UniquePlanners.Application.Services.PlannerCoversService
 
         public override IQueryable<Core.Entities.PlannerCovers> AddFilter(IQueryable<Core.Entities.PlannerCovers> entity, PlannerCoversSearchObject search)
         {
+            entity = base.AddFilter(entity, search);
+
             if(!string.IsNullOrEmpty(search.Name))
             {
                 entity = entity.Where(x => x.Name.ToLower().Contains(search.Name.ToLower()));
